@@ -5,7 +5,7 @@
   "main": "dist/preactCharts.js",
   "source": "src/preactCharts.ts",
   "scripts": {
-    "build": "microbundle --inline all",
+    "build": "microbundle --external none",
     "dev": "microbundle --inline all watch",
     "smart-publish": "npm run build && git commit -am %npm_package_version% && git tag %npm_package_version% && git push && git push --tags && npm publish"
   },
