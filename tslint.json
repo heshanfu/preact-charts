@@ -5,7 +5,7 @@
     ],
     "rules": {
         "quotemark": [true, "single"],
-        "variable-name": [true, "allow-pascal-case"],
+        "variable-name": [true, "allow-pascal-case", "allow-leading-underscore"],
         "ordered-imports": [false],
         "space-before-function-paren": [true, "always"],
         "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
@@ -13,6 +13,6 @@
         "only-arrow-functions": [false],
         "interface-name": [true, "never-prefix"],
         "object-literal-sort-keys": [false],
-        "no-empty": [true, "allow-empty-functions"]
+        "no-empty": [true, "allow-empty-functions"],
     }
 }
