@@ -27,10 +27,11 @@ export const gridStyle = css({
     },
 });
 interface AxisProps {
-    height?: number;
-    width?: number;
     scale: AxisScale<any>;
     axisType: string;
+    height?: number;
+    width?: number;
+
     ticks?: number;
     grid?: boolean;
     rotateScaleText?: boolean;
@@ -49,8 +50,8 @@ export class Axis extends Component<AxisProps> {
         rotateScaleText: false,
     };
 
-    private axis: SVGGElement;
-    private grid: SVGGElement;
+    private _axis: SVGGElement;
+    private _grid: SVGGElement;
 
     public render ({height, axisType, grid, offsetX}: AxisProps) {
         const translate = offsetX ? `translate(${offsetX}, 0)` : `translate(0, ${height})`;
@@ -58,12 +59,12 @@ export class Axis extends Component<AxisProps> {
 
         return (
             <g>
-                <g ref={(axis) => this.axis = axis} class={tickLabel}
+                <g ref={(axis) => this._axis = axis} class={tickLabel}
                     transform={shouldOffset ? translate : ''}>
                 </g>
                 {
                     grid &&
-                    <g ref={(gridline) => this.grid = gridline} class={gridStyle}
+                    <g ref={(gridline) => this._grid = gridline} class={gridStyle}
                         transform={shouldOffset ? translate : ''}>
                     </g>
                 }
@@ -71,24 +72,24 @@ export class Axis extends Component<AxisProps> {
         );
     }
 
-    public componentDidMount = () => { this.renderAxis(); };
-    public componentDidUpdate = () => { this.renderAxis(); };
-    private renderAxis = () => {
+    public componentDidMount = () => { this._renderAxis(); };
+    public componentDidUpdate = () => { this._renderAxis(); };
+    private _renderAxis = () => {
         if (this.props.axisType === 'x') {
-            select(this.axis).call(axisBottom(this.props.scale).ticks(this.props.ticks));
+            select(this._axis).call(axisBottom(this.props.scale).ticks(this.props.ticks));
             if (this.props.rotateScaleText) {
-                select(this.axis).selectAll('text').attr('dx', '-.8em').attr('dy', '.15em')
+                select(this._axis).selectAll('text').attr('dx', '-.8em').attr('dy', '.15em')
                     .style('text-anchor', 'end').attr('transform', 'rotate(-65)');
             }
 
             if (this.props.grid) {
-                select(this.grid).call(axisBottom(this.props.scale)
+                select(this._grid).call(axisBottom(this.props.scale)
                     .ticks(this.props.ticks).tickSize(-this.props.height).tickFormat('' as null));
             }
         } else if (this.props.axisType === 'y') {
-            select(this.axis).call(axisLeft(this.props.scale).ticks(this.props.ticks));
+            select(this._axis).call(axisLeft(this.props.scale).ticks(this.props.ticks));
             if (this.props.grid) {
-                select(this.grid).call(axisLeft(this.props.scale)
+                select(this._grid).call(axisLeft(this.props.scale)
                     .ticks(this.props.ticks).tickSize(-this.props.width).tickFormat('' as null));
             }
         }
