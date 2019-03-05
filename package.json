@@ -14,9 +14,10 @@
     "LICENSE"
   ],
   "scripts": {
+    "check-build": "npm run build && npm run check-size",
     "build": "microbundle --external none --name preactCharts",
     "dev": "microbundle watch --external none --name preactCharts",
-    "test-size": "npx bundlesize",
+    "size-check": "npx bundlesize",
     "smart-publish": "npm run build && git commit -am %npm_package_version% && git tag %npm_package_version% && git push && git push --tags && npm publish"
   },
   "keywords": [
