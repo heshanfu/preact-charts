@@ -14,7 +14,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "check-build": "npm run build && npm run check-size",
+    "check-build": "npm run build && npm run size-check",
     "build": "microbundle --external none --name preactCharts",
     "dev": "microbundle watch --external none --name preactCharts",
     "size-check": "npx bundlesize",
