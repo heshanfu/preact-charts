@@ -3,17 +3,27 @@
   "version": "0.4.2",
   "description": "Charting library built using preact with some small d3 dependencies",
   "main": "dist/preactCharts.js",
-  "source": "src/preactCharts.ts",
+  "module": "dist/preactCharts.mjs",
+  "umd:main": "dist/preactCharts.umd.js",
+  "source": "src/preactCharts.js",
+  "files": [
+    "package.json",
+    "README.md",
+    "dist",
+    "src",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "microbundle --external none",
-    "dev": "microbundle --inline all watch",
+    "build": "microbundle --external none --name preactCharts",
+    "dev": "microbundle watch --external none --name preactCharts",
     "smart-publish": "npm run build && git commit -am %npm_package_version% && git tag %npm_package_version% && git push && git push --tags && npm publish"
   },
   "keywords": [
     "charts",
     "data-vis",
     "preact",
-    "d3"
+    "d3",
+    "component library"
   ],
   "author": "pmkroeker <dev.pmkro@gmail.com>",
   "license": "MIT",
