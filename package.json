@@ -14,6 +14,7 @@
     "LICENSE"
   ],
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
     "check-build": "npm run build && npm run size-check",
     "build": "microbundle --external none --name preactCharts",
     "dev": "microbundle watch --external none --name preactCharts",
